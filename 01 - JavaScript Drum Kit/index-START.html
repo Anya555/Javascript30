@@ -62,7 +62,7 @@
       function getKey(e) {
         // e.keycode returns key code of the pressed key
         // key.dataset.key returns data-key attribute value
-        // Using the Array.from() method to convert the HTMLCollection to an Array
+        // Array.from() converts HTMLCollection to an Array
         Array.from(audios).forEach(function (element) {
           if (JSON.stringify(e.keyCode) === element.dataset.key) {
             element.play();
