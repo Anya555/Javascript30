@@ -10,12 +10,43 @@
       <input type="text" class="search" placeholder="City or State" />
       <ul class="suggestions">
         <li>Filter for a city</li>
-        <li>or a state</li>
+        <li>Or A State</li>
       </ul>
     </form>
     <script>
+      const searchField = document.querySelector("input");
+      const list = document.querySelector("ul");
+
       const endpoint =
         "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+
+      let cities = [];
+      let filteredCities = [];
+      let li;
+
+      fetch(endpoint)
+        .then((resp) => resp.json())
+        .then((data) => {
+          cities = data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      searchField.addEventListener("input", function (e) {
+        filteredCities = cities.filter(
+          (obj) =>
+            obj.city.toLowerCase().includes(this.value.toLowerCase()) ||
+            obj.state.toLowerCase().includes(this.value.toLowerCase())
+        );
+
+        list.innerHTML = "";
+        filteredCities.forEach((obj) => {
+          li = document.createElement("li");
+          li.innerHTML = `${obj.city}, ${obj.state}, ${obj.population}`;
+          list.appendChild(li);
+        });
+      });
     </script>
   </body>
 </html>
