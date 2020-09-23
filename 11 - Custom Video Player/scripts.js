@@ -5,7 +5,6 @@ const secondsToSkip = document.querySelectorAll("[data-skip]");
 const inputs = document.querySelectorAll("input");
 const progress = document.querySelector(".progress");
 let videoPaused = true;
-
 progressFilled.style.flexBasis = "0%";
 
 play.addEventListener("click", function () {
