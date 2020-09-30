@@ -57,23 +57,23 @@
   -->
     <div class="inbox">
       <div class="item">
-        <input type="checkbox" />
+        <input type="checkbox" class="one" />
         <p>This is an inbox layout.</p>
       </div>
       <div class="item">
-        <input type="checkbox" />
+        <input type="checkbox" class="two" />
         <p>Check one item</p>
       </div>
       <div class="item">
-        <input type="checkbox" />
+        <input type="checkbox" class="three" />
         <p>Hold down your Shift key</p>
       </div>
       <div class="item">
-        <input type="checkbox" />
+        <input type="checkbox" class="four" />
         <p>Check a lower item</p>
       </div>
       <div class="item">
-        <input type="checkbox" />
+        <input type="checkbox" class="five" />
         <p>Everything in between should also be set to checked</p>
       </div>
       <div class="item">
@@ -95,16 +95,31 @@
     </div>
 
     <script>
-      const inputs = document.querySelectorAll("input");
-      let newArr = Array.from(inputs);
+      const items = document.querySelectorAll(".item");
+      let itemsArr = Array.from(items);
 
-      let lastCheckedBox;
-      newArr.forEach((input) => {
+      let previousIndex;
+
+      itemsArr.forEach((input, currentIndex) => {
         input.addEventListener("click", function (e) {
           if (e.shiftKey === true) {
-            // console.log("shift");
+            let low;
+            let high;
+            if (currentIndex > previousIndex) {
+              high = currentIndex;
+              low = previousIndex;
+            } else {
+              high = previousIndex;
+              low = currentIndex;
+            }
+
+            for (let i = low; i <= high; i++) {
+              let input = itemsArr[i].querySelector("input");
+              input.checked = true;
+            }
           }
-          lastCheckedBox = e.target;
+
+          previousIndex = currentIndex;
         });
       });
     </script>
