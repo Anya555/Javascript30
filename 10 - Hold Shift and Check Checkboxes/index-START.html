@@ -95,12 +95,10 @@
     </div>
 
     <script>
-      const items = document.querySelectorAll(".item");
-      let itemsArr = Array.from(items);
-
+      const inputs = document.querySelectorAll("input");
       let previousIndex;
 
-      itemsArr.forEach((input, currentIndex) => {
+      Array.from(inputs).forEach((input, currentIndex) => {
         input.addEventListener("click", function (e) {
           if (e.shiftKey === true) {
             let low;
@@ -114,8 +112,7 @@
             }
 
             for (let i = low; i <= high; i++) {
-              let input = itemsArr[i].querySelector("input");
-              input.checked = true;
+              inputs[i].checked = true;
             }
           }
 

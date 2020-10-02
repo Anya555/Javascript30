@@ -129,17 +129,21 @@
 
     <script>
       let panels = document.querySelectorAll(".panel");
-
+      let n = 3; // each panel has 3 children
       panels.forEach((panel) => {
         panel.addEventListener("click", function (e) {
           if (
             e.target.className.split(" ")[1] === panel.className.split(" ")[1]
           ) {
-            let n = 3; // each panel has 3 children
             panel.children[n - 3].style.display = "block";
             panel.children[n - 1].style.display = "block";
             panel.style.flexGrow = "3";
             panel.classList.add("open");
+          } else {
+            panel.children[n - 3].style.display = "none";
+            panel.children[n - 1].style.display = "none";
+            panel.style.flexGrow = "1";
+            panel.classList.remove("open");
           }
         });
       });
