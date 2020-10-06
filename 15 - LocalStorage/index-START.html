@@ -67,12 +67,15 @@
         };
         items.push(newItem);
         createNewItem(newItem);
-        localStorage.setItem("items", JSON.stringify(items));
+        saveToLocalStorage();
         addItems.reset();
       });
 
-      let uniqueId = 0;
+      const saveToLocalStorage = () => {
+        localStorage.setItem("items", JSON.stringify(items));
+      };
 
+      let uniqueId = 0;
       const createNewItem = (newItem) => {
         listItem = document.createElement("li");
         let input = document.createElement("input");
@@ -102,10 +105,10 @@
           if (idx === Number(e.target.id - 1)) {
             if (e.target.checked) {
               item.checked = true;
-              localStorage.setItem("items", JSON.stringify(items));
+              saveToLocalStorage();
             } else {
               item.checked = false;
-              localStorage.setItem("items", JSON.stringify(items));
+              saveToLocalStorage();
             }
           }
         });

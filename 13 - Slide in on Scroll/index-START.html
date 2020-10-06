@@ -237,6 +237,9 @@
           if (callNow) func.apply(context, args);
         };
       }
+      window.addEventListener("scroll", function (e) {
+        console.log(e);
+      });
     </script>
 
     <style>

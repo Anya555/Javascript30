@@ -10,15 +10,12 @@
   </head>
   <body>
     <script>
-      let konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+      let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+      let pressedKeys = [];
+
       const keyDetection = (e) => {
-        console.log(e.keyCode);
-        // for (let i = 0; i < konami.length; i++) {
-        //   if (e.keyCode === konami[i]) {
-        //     console.log(true);
-        //   }
-        // }
-        
+        pressedKeys.push(e.keyCode);
+        return JSON.stringify(konamiCode) == JSON.stringify(pressedKeys);
       };
       window.onkeyup = keyDetection;
     </script>
