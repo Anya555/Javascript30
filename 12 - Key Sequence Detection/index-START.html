@@ -15,8 +15,22 @@
 
       const keyDetection = (e) => {
         pressedKeys.push(e.keyCode);
-        return JSON.stringify(konamiCode) == JSON.stringify(pressedKeys);
+        // return JSON.stringify(konamiCode) == JSON.stringify(pressedKeys);
+
+        if (konamiCode === pressedKeys) return true;
+        if (konamiCode == null || pressedKeys == null) return false;
+        if (konamiCode.length !== pressedKeys.length) return false;
+
+        for (var i = 0; i < konamiCode.length; ++i) {
+          if (konamiCode[i] !== pressedKeys[i]) {
+            return false;
+          } else {
+            console.log("konami");
+          }
+        }
+        return true;
       };
+
       window.onkeyup = keyDetection;
     </script>
   </body>
