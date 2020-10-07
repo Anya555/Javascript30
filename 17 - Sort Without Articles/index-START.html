@@ -71,11 +71,9 @@
         return band;
       };
 
-      let bandsLIst = bands.sort((a, b) => {
-        a = stripArticle(a);
-        b = stripArticle(b);
-        return a > b ? 1 : -1;
-      });
+      let bandsLIst = bands.sort((a, b) =>
+        stripArticle(a) > stripArticle(b) ? 1 : -1
+      );
 
       let list = document.getElementById("bands");
       bandsLIst.forEach((band) => {
