@@ -6,7 +6,44 @@
   </head>
   <body>
     <canvas id="draw" width="800" height="800"></canvas>
-    <script></script>
+    <script>
+      let canvas = document.getElementById("draw");
+      let ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let drawing = false;
+
+      const generateRandomColorAndWidth = () => {
+        let generatedColor = Math.floor(Math.random() * Math.floor(255));
+        ctx.strokeStyle = `hsl(${generatedColor}, 100%, 40%)`;
+        ctx.lineWidth = Math.floor(Math.random() * Math.floor(40));
+      };
+
+      const startedDrawing = (e) => {
+        drawing = true;
+        paint(e);
+        generateRandomColorAndWidth();
+      };
+
+      const finishedDrawing = () => {
+        drawing = false;
+        ctx.beginPath();
+      };
+
+      const paint = (e) => {
+        if (!drawing) return;
+        ctx.lineCap = "round";
+        // drawing lines in direction of mousemove
+        ctx.lineTo(e.clientX, e.clientY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX, e.clientY);
+      };
+
+      canvas.addEventListener("mousedown", startedDrawing);
+      canvas.addEventListener("mouseup", finishedDrawing);
+      canvas.addEventListener("mousemove", paint);
+    </script>
 
     <style>
       html,
