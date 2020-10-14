@@ -54,6 +54,20 @@
   </div>
 
 <script>
+  
+let navbar = document.getElementById("main");
+let logo = document.querySelector(".logo");
+let sticky = navbar.offsetTop;
+
+window.onscroll = () => {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky");
+    logo.style.maxWidth = "100%"
+  } else {
+    navbar.classList.remove("sticky");
+    logo.style.maxWidth = "0%"
+  }
+}
 
 </script>
 

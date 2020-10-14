@@ -13,16 +13,12 @@
       canvas.height = window.innerHeight;
       let drawing = false;
 
-      const generateRandomColorAndWidth = () => {
-        let generatedColor = Math.floor(Math.random() * Math.floor(255));
-        ctx.strokeStyle = `hsl(${generatedColor}, 100%, 40%)`;
-        ctx.lineWidth = Math.floor(Math.random() * Math.floor(40));
-      };
-
       const startedDrawing = (e) => {
         drawing = true;
         paint(e);
-        generateRandomColorAndWidth();
+        let generatedColor = Math.floor(Math.random() * Math.floor(255));
+        ctx.strokeStyle = `hsl(${generatedColor}, 100%, 40%)`;
+        ctx.lineWidth = Math.floor(Math.random() * Math.floor(40));
       };
 
       const finishedDrawing = () => {
