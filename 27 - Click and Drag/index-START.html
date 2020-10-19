@@ -34,6 +34,35 @@
       <div class="item item25">25</div>
     </div>
 
-    <script></script>
+    <script>
+      let allItems = document.querySelector(".items");
+      let startingXPosition = 0;
+      let dragging = false;
+      let newScrolledPosition = 0;
+
+      const getStartingPosition = (e) => {
+        e.preventDefault();
+        dragging = true;
+        allItems.classList.add("active");
+        startingXPosition = e.clientX;
+        newScrolledPosition = allItems.scrollLeft;
+      };
+
+      const calculateNewPosition = (e) => {
+        if (!dragging) return;
+        let newXPosition = startingXPosition - e.clientX;
+        allItems.scrollLeft =
+          newScrolledPosition + (newXPosition - allItems.offsetLeft);
+      };
+
+      const stropDragging = (e) => {
+        dragging = false;
+        allItems.classList.remove("active");
+      };
+
+      allItems.onmousedown = getStartingPosition;
+      allItems.onmousemove = calculateNewPosition;
+      allItems.onmouseup = stropDragging;
+    </script>
   </body>
 </html>
