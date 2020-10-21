@@ -11,7 +11,6 @@ const getCurrentTime = () => {
   currentHour = Number(currentTime.split(":")[0]);
   currentMinute = Number(currentTime.split(":")[1]);
   currentSecond = now.getSeconds();
-  console.log(currentSecond);
 };
 setInterval(getCurrentTime, 1000);
 
