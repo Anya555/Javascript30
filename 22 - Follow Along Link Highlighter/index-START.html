@@ -47,6 +47,24 @@
 
     <script>
       // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+      let links = document.querySelectorAll("a");
+      let highLight = document.createElement("span");
+      let body = document.querySelector("body");
+      highLight.classList.add("highlight");
+      body.appendChild(highLight);
+      let xPosition = 0,
+        yPosition = 0;
+
+      links.forEach((link) => {
+        link.addEventListener("mouseover", function (e) {
+          yPosition = window.pageYOffset + link.getBoundingClientRect().top;
+          xPosition = window.pageXOffset + link.getBoundingClientRect().left;
+          highLight.style.width = link.offsetWidth + "px";
+          highLight.style.height = link.offsetHeight + "px";
+          highLight.style.top = yPosition + "px";
+          highLight.style.left = xPosition + "px";
+        });
+      });
     </script>
   </body>
 </html>
