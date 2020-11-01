@@ -260,6 +260,33 @@
       }
     </style>
 
-    <script></script>
+    <script>
+      let links = document.querySelectorAll(".cool > li");
+      let dropdownBackground = document.querySelector(".dropdownBackground");
+      let nav = document.querySelector(".top");
+      let navTop = nav.getBoundingClientRect().top;
+      let navLeft = nav.getBoundingClientRect().left;
+
+      links.forEach((element, index) =>
+        element.addEventListener("mouseover", function () {
+          let dropdown = element.querySelector(".dropdown");
+          dropdownBackground.classList.add("open");
+          element.classList.add("trigger-enter-active", "trigger-enter");
+          let yPosition = dropdown.getBoundingClientRect().top - navTop;
+          let xPosition = dropdown.getBoundingClientRect().left - navLeft;
+          dropdownBackground.style.top = yPosition + "px";
+          dropdownBackground.style.left = xPosition + "px";
+          dropdownBackground.style.width = dropdown.offsetWidth + "px";
+          dropdownBackground.style.height = dropdown.offsetHeight + "px";
+        })
+      );
+
+      links.forEach((el) =>
+        el.addEventListener("mouseleave", function () {
+          dropdownBackground.classList.remove("open");
+          el.classList.remove("trigger-enter-active", "trigger-enter");
+        })
+      );
+    </script>
   </body>
 </html>
